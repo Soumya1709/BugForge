@@ -1,0 +1,23 @@
+{
+  "id": "is_divisible_bugs3_239",
+  "function_name": "is_divisible",
+  "bug_count": 1,
+  "correct_code": "def is_divisible(n, d):\n    if n % d == 0:\n        return True\n    return False",
+  "buggy_code": "def is_divisible(n, d):\n    if d % n == 0:\n        return True\n    return False",
+  "test_code": "assert is_divisible(10, 5) == True\nassert is_divisible(7, 3) == False\nassert is_divisible(0, 4) == True",
+  "bug_types": [
+    3
+  ],
+  "bug_type_names": [
+    "swap_variable_reference"
+  ],
+  "modified_lines": [
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.3333333333333333,
+    "buggy_tests_failed": 2
+  }
+}

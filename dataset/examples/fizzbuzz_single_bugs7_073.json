@@ -1,0 +1,23 @@
+{
+  "id": "fizzbuzz_single_bugs7_073",
+  "function_name": "fizzbuzz_single",
+  "bug_count": 1,
+  "correct_code": "def fizzbuzz_single(n):\n    if n % 15 == 0:\n        return 'FizzBuzz'\n    if n % 3 == 0:\n        return 'Fizz'\n    if n % 5 == 0:\n        return 'Buzz'\n    return str(n)",
+  "buggy_code": "def fizzbuzz_single(n):\n    if n % 15 == 0:\n        return None\n    if n % 3 == 0:\n        return 'Fizz'\n    if n % 5 == 0:\n        return 'Buzz'\n    return str(n)",
+  "test_code": "assert fizzbuzz_single(15) == 'FizzBuzz'\nassert fizzbuzz_single(3) == 'Fizz'\nassert fizzbuzz_single(7) == '7'",
+  "bug_types": [
+    7
+  ],
+  "bug_type_names": [
+    "wrong_return_value"
+  ],
+  "modified_lines": [
+    3
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.6666666666666666,
+    "buggy_tests_failed": 1
+  }
+}

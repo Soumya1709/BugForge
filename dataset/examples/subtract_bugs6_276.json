@@ -1,0 +1,23 @@
+{
+  "id": "subtract_bugs6_276",
+  "function_name": "subtract",
+  "bug_count": 1,
+  "correct_code": "def subtract(a, b):\n    return a - b",
+  "buggy_code": "def subtract(a, b):\n    return a + b",
+  "test_code": "assert subtract(10, 3) == 7\nassert subtract(0, 5) == -5\nassert subtract(7, 7) == 0",
+  "bug_types": [
+    6
+  ],
+  "bug_type_names": [
+    "wrong_arithmetic_operator"
+  ],
+  "modified_lines": [
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

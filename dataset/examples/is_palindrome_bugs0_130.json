@@ -1,0 +1,23 @@
+{
+  "id": "is_palindrome_bugs0_130",
+  "function_name": "is_palindrome",
+  "bug_count": 1,
+  "correct_code": "def is_palindrome(s):\n    left = 0\n    right = len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True",
+  "buggy_code": "def is_palindrome(s):\n    left = 0\n    right = len(s) - 1\n    while left > right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True",
+  "test_code": "assert is_palindrome('racecar') == True\nassert is_palindrome('hello') == False\nassert is_palindrome('a') == True",
+  "bug_types": [
+    0
+  ],
+  "bug_type_names": [
+    "swap_comparison_operator"
+  ],
+  "modified_lines": [
+    4
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.6666666666666666,
+    "buggy_tests_failed": 1
+  }
+}

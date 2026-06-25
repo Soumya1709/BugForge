@@ -1,0 +1,23 @@
+{
+  "id": "count_words_bugs7_297",
+  "function_name": "count_words",
+  "bug_count": 1,
+  "correct_code": "def count_words(s):\n    if s == '':\n        return 0\n    return len(s.split())",
+  "buggy_code": "def count_words(s):\n    if s == '':\n        return None\n    return len(s.split())",
+  "test_code": "assert count_words('hello world') == 2\nassert count_words('') == 0\nassert count_words('one two three four') == 4",
+  "bug_types": [
+    7
+  ],
+  "bug_type_names": [
+    "wrong_return_value"
+  ],
+  "modified_lines": [
+    3
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.6666666666666666,
+    "buggy_tests_failed": 1
+  }
+}

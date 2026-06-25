@@ -1,0 +1,23 @@
+{
+  "id": "starts_with_bugs0_032",
+  "function_name": "starts_with",
+  "bug_count": 1,
+  "correct_code": "def starts_with(s, prefix):\n    if len(prefix) > len(s):\n        return False\n    for i in range(len(prefix)):\n        if s[i] != prefix[i]:\n            return False\n    return True",
+  "buggy_code": "def starts_with(s, prefix):\n    if len(prefix) < len(s):\n        return False\n    for i in range(len(prefix)):\n        if s[i] != prefix[i]:\n            return False\n    return True",
+  "test_code": "assert starts_with('hello', 'he') == True\nassert starts_with('world', 'he') == False\nassert starts_with('abc', 'abc') == True",
+  "bug_types": [
+    0
+  ],
+  "bug_type_names": [
+    "swap_comparison_operator"
+  ],
+  "modified_lines": [
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.6666666666666666,
+    "buggy_tests_failed": 1
+  }
+}

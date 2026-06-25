@@ -1,0 +1,26 @@
+{
+  "id": "sort_array_bugs07_300",
+  "function_name": "sort_array",
+  "bug_count": 2,
+  "correct_code": "def sort_array(data):\n    sz = len(data)\n    for x in range(sz):\n        for y in range(0, sz - x - 1):\n            if data[y] > data[y + 1]:\n                data[y], data[y + 1] = data[y + 1], data[y]\n    return data",
+  "buggy_code": "def sort_array(data):\n    sz = len(data)\n    for x in range(sz):\n        for y in range(0, sz - x - 1):\n            if data[y] < data[y + 1]:\n                data[y], data[y + 1] = (data[y + 1], data[y])\n    return None",
+  "test_code": "assert sort_array([5, 2, 8, 1, 9]) == [1, 2, 5, 8, 9]\nassert sort_array([3, 1]) == [1, 3]\nassert sort_array([4, 4, 4]) == [4, 4, 4]",
+  "bug_types": [
+    0,
+    7
+  ],
+  "bug_type_names": [
+    "swap_comparison_operator",
+    "wrong_return_value"
+  ],
+  "modified_lines": [
+    5,
+    7
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "string_length_bugs6_254",
+  "function_name": "string_length",
+  "bug_count": 1,
+  "correct_code": "def string_length(s):\n    count = 0\n    for ch in s:\n        count += 1\n    return count",
+  "buggy_code": "def string_length(s):\n    count = 0\n    for ch in s:\n        count -= 1\n    return count",
+  "test_code": "assert string_length('hello') == 5\nassert string_length('') == 0\nassert string_length('ab') == 2",
+  "bug_types": [
+    6
+  ],
+  "bug_type_names": [
+    "wrong_arithmetic_operator"
+  ],
+  "modified_lines": [
+    4
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.3333333333333333,
+    "buggy_tests_failed": 2
+  }
+}

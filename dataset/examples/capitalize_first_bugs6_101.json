@@ -1,0 +1,23 @@
+{
+  "id": "capitalize_first_bugs6_101",
+  "function_name": "capitalize_first",
+  "bug_count": 1,
+  "correct_code": "def capitalize_first(s):\n    if len(s) == 0:\n        return s\n    return s[0].upper() + s[1:]",
+  "buggy_code": "def capitalize_first(s):\n    if len(s) == 0:\n        return s\n    return s[0].upper() - s[1:]",
+  "test_code": "assert capitalize_first('hello') == 'Hello'\nassert capitalize_first('') == ''\nassert capitalize_first('world') == 'World'",
+  "bug_types": [
+    6
+  ],
+  "bug_type_names": [
+    "wrong_arithmetic_operator"
+  ],
+  "modified_lines": [
+    4
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.3333333333333333,
+    "buggy_tests_failed": 2
+  }
+}

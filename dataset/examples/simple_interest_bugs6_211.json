@@ -1,0 +1,23 @@
+{
+  "id": "simple_interest_bugs6_211",
+  "function_name": "simple_interest",
+  "bug_count": 1,
+  "correct_code": "def simple_interest(principal, rate, time):\n    return (principal * rate * time) / 100",
+  "buggy_code": "def simple_interest(principal, rate, time):\n    return principal * rate // time / 100",
+  "test_code": "assert simple_interest(1000, 5, 2) == 100.0\nassert simple_interest(500, 10, 1) == 50.0\nassert simple_interest(200, 5, 3) == 30.0",
+  "bug_types": [
+    6
+  ],
+  "bug_type_names": [
+    "wrong_arithmetic_operator"
+  ],
+  "modified_lines": [
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.3333333333333333,
+    "buggy_tests_failed": 2
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "linear_search_bugs0_268",
+  "function_name": "linear_search",
+  "bug_count": 1,
+  "correct_code": "def linear_search(arr, target):\n    for i in range(len(arr)):\n        if arr[i] == target:\n            return i\n    return -1",
+  "buggy_code": "def linear_search(arr, target):\n    for i in range(len(arr)):\n        if arr[i] != target:\n            return i\n    return -1",
+  "test_code": "assert linear_search([3, 1, 4, 1, 5], 4) == 2\nassert linear_search([1, 2, 3], 9) == -1\nassert linear_search([7], 7) == 0",
+  "bug_types": [
+    0
+  ],
+  "bug_type_names": [
+    "swap_comparison_operator"
+  ],
+  "modified_lines": [
+    3
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

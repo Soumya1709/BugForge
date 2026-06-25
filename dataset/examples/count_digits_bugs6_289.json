@@ -1,0 +1,23 @@
+{
+  "id": "count_digits_bugs6_289",
+  "function_name": "count_digits",
+  "bug_count": 1,
+  "correct_code": "def count_digits(n):\n    if n == 0:\n        return 1\n    count = 0\n    n = abs(n)\n    while n > 0:\n        count += 1\n        n //= 10\n    return count",
+  "buggy_code": "def count_digits(n):\n    if n == 0:\n        return 1\n    count = 0\n    n = abs(n)\n    while n > 0:\n        count -= 1\n        n //= 10\n    return count",
+  "test_code": "assert count_digits(12345) == 5\nassert count_digits(0) == 1\nassert count_digits(100) == 3",
+  "bug_types": [
+    6
+  ],
+  "bug_type_names": [
+    "wrong_arithmetic_operator"
+  ],
+  "modified_lines": [
+    7
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.3333333333333333,
+    "buggy_tests_failed": 2
+  }
+}

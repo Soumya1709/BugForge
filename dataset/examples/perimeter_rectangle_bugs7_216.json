@@ -1,0 +1,23 @@
+{
+  "id": "perimeter_rectangle_bugs7_216",
+  "function_name": "perimeter_rectangle",
+  "bug_count": 1,
+  "correct_code": "def perimeter_rectangle(width, height):\n    return 2 * (width + height)",
+  "buggy_code": "def perimeter_rectangle(width, height):\n    return None",
+  "test_code": "assert perimeter_rectangle(4, 5) == 18\nassert perimeter_rectangle(3, 3) == 12\nassert perimeter_rectangle(1, 10) == 22",
+  "bug_types": [
+    7
+  ],
+  "bug_type_names": [
+    "wrong_return_value"
+  ],
+  "modified_lines": [
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

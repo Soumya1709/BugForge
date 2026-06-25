@@ -1,0 +1,23 @@
+{
+  "id": "is_leap_year_bugs2_047",
+  "function_name": "is_leap_year",
+  "bug_count": 1,
+  "correct_code": "def is_leap_year(year):\n    if year % 400 == 0:\n        return True\n    if year % 100 == 0:\n        return False\n    if year % 4 == 0:\n        return True\n    return False",
+  "buggy_code": "def is_leap_year(year):\n    if year % 400 == 0:\n        return False\n    if year % 100 == 0:\n        return False\n    if year % 4 == 0:\n        return True\n    return False",
+  "test_code": "assert is_leap_year(2000) == True\nassert is_leap_year(1900) == False\nassert is_leap_year(2024) == True",
+  "bug_types": [
+    2
+  ],
+  "bug_type_names": [
+    "flip_boolean_return"
+  ],
+  "modified_lines": [
+    3
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.6666666666666666,
+    "buggy_tests_failed": 1
+  }
+}

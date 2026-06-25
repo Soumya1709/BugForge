@@ -1,0 +1,23 @@
+{
+  "id": "list_average_bugs6_091",
+  "function_name": "list_average",
+  "bug_count": 1,
+  "correct_code": "def list_average(lst):\n    total = 0\n    for num in lst:\n        total += num\n    return total / len(lst)",
+  "buggy_code": "def list_average(lst):\n    total = 0\n    for num in lst:\n        total -= num\n    return total / len(lst)",
+  "test_code": "assert list_average([1, 2, 3, 4, 5]) == 3.0\nassert list_average([10, 20]) == 15.0\nassert list_average([7]) == 7.0",
+  "bug_types": [
+    6
+  ],
+  "bug_type_names": [
+    "wrong_arithmetic_operator"
+  ],
+  "modified_lines": [
+    4
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "absolute_value_bugs7_222",
+  "function_name": "absolute_value",
+  "bug_count": 1,
+  "correct_code": "def absolute_value(n):\n    if n < 0:\n        return -n\n    return n",
+  "buggy_code": "def absolute_value(n):\n    if n < 0:\n        return None\n    return n",
+  "test_code": "assert absolute_value(-5) == 5\nassert absolute_value(3) == 3\nassert absolute_value(0) == 0",
+  "bug_types": [
+    7
+  ],
+  "bug_type_names": [
+    "wrong_return_value"
+  ],
+  "modified_lines": [
+    3
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.6666666666666666,
+    "buggy_tests_failed": 1
+  }
+}

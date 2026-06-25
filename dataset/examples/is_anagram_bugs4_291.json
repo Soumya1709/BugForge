@@ -1,0 +1,23 @@
+{
+  "id": "is_anagram_bugs4_291",
+  "function_name": "is_anagram",
+  "bug_count": 1,
+  "correct_code": "def is_anagram(s1, s2):\n    if len(s1) != len(s2):\n        return False\n    return sorted(s1) == sorted(s2)",
+  "buggy_code": "def is_anagram(s1, s2):\n    if not len(s1) != len(s2):\n        return False\n    return sorted(s1) == sorted(s2)",
+  "test_code": "assert is_anagram('listen', 'silent') == True\nassert is_anagram('hello', 'world') == False\nassert is_anagram('abc', 'cab') == True",
+  "bug_types": [
+    4
+  ],
+  "bug_type_names": [
+    "invert_conditional"
+  ],
+  "modified_lines": [
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.3333333333333333,
+    "buggy_tests_failed": 2
+  }
+}

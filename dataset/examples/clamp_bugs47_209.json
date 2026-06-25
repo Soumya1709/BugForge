@@ -1,0 +1,26 @@
+{
+  "id": "clamp_bugs47_209",
+  "function_name": "clamp",
+  "bug_count": 2,
+  "correct_code": "def clamp(value, low, high):\n    if value < low:\n        return low\n    if value > high:\n        return high\n    return value",
+  "buggy_code": "def clamp(value, low, high):\n    if not value < low:\n        return None\n    if value > high:\n        return high\n    return value",
+  "test_code": "assert clamp(5, 1, 10) == 5\nassert clamp(-1, 0, 10) == 0\nassert clamp(15, 0, 10) == 10",
+  "bug_types": [
+    4,
+    7
+  ],
+  "bug_type_names": [
+    "invert_conditional",
+    "wrong_return_value"
+  ],
+  "modified_lines": [
+    2,
+    3
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

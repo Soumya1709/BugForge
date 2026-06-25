@@ -1,0 +1,23 @@
+{
+  "id": "selection_sort_bugs0_014",
+  "function_name": "selection_sort",
+  "bug_count": 1,
+  "correct_code": "def selection_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        min_idx = i\n        for j in range(i + 1, n):\n            if arr[j] < arr[min_idx]:\n                min_idx = j\n        arr[i], arr[min_idx] = arr[min_idx], arr[i]\n    return arr",
+  "buggy_code": "def selection_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        min_idx = i\n        for j in range(i + 1, n):\n            if arr[j] > arr[min_idx]:\n                min_idx = j\n        arr[i], arr[min_idx] = (arr[min_idx], arr[i])\n    return arr",
+  "test_code": "assert selection_sort([64, 25, 12, 22, 11]) == [11, 12, 22, 25, 64]\nassert selection_sort([3, 1, 2]) == [1, 2, 3]\nassert selection_sort([5]) == [5]",
+  "bug_types": [
+    0
+  ],
+  "bug_type_names": [
+    "swap_comparison_operator"
+  ],
+  "modified_lines": [
+    6
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.3333333333333333,
+    "buggy_tests_failed": 2
+  }
+}

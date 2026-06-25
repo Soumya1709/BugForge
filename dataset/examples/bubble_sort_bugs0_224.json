@@ -1,0 +1,23 @@
+{
+  "id": "bubble_sort_bugs0_224",
+  "function_name": "bubble_sort",
+  "bug_count": 1,
+  "correct_code": "def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(0, n - i - 1):\n            if arr[j] > arr[j + 1]:\n                arr[j], arr[j + 1] = arr[j + 1], arr[j]\n    return arr",
+  "buggy_code": "def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(0, n - i - 1):\n            if arr[j] < arr[j + 1]:\n                arr[j], arr[j + 1] = (arr[j + 1], arr[j])\n    return arr",
+  "test_code": "assert bubble_sort([64, 34, 25, 12, 22]) == [12, 22, 25, 34, 64]\nassert bubble_sort([3, 1, 2]) == [1, 2, 3]\nassert bubble_sort([1, 2, 3]) == [1, 2, 3]",
+  "bug_types": [
+    0
+  ],
+  "bug_type_names": [
+    "swap_comparison_operator"
+  ],
+  "modified_lines": [
+    5
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

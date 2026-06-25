@@ -1,0 +1,26 @@
+{
+  "id": "is_strictly_increasing_bugs01_015",
+  "function_name": "is_strictly_increasing",
+  "bug_count": 2,
+  "correct_code": "def is_strictly_increasing(lst):\n    for i in range(len(lst) - 1):\n        if lst[i] >= lst[i + 1]:\n            return False\n    return True",
+  "buggy_code": "def is_strictly_increasing(lst):\n    for i in range(len(lst) + 1):\n        if lst[i] <= lst[i + 1]:\n            return False\n    return True",
+  "test_code": "assert is_strictly_increasing([1, 2, 3, 4]) == True\nassert is_strictly_increasing([1, 2, 2, 3]) == False\nassert is_strictly_increasing([3, 2, 1]) == False",
+  "bug_types": [
+    0,
+    1
+  ],
+  "bug_type_names": [
+    "swap_comparison_operator",
+    "off_by_one"
+  ],
+  "modified_lines": [
+    3,
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.3333333333333333,
+    "buggy_tests_failed": 2
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "moving_average_bugs1_159",
+  "function_name": "moving_average",
+  "bug_count": 1,
+  "correct_code": "def moving_average(lst, k):\n    result = []\n    for i in range(len(lst) - k + 1):\n        window = lst[i:i + k]\n        result.append(sum(window) / k)\n    return result",
+  "buggy_code": "def moving_average(lst, k):\n    result = []\n    for i in range(len(lst) - k):\n        window = lst[i:i + k]\n        result.append(sum(window) / k)\n    return result",
+  "test_code": "assert moving_average([1, 2, 3, 4, 5], 3) == [2.0, 3.0, 4.0]\nassert moving_average([1, 2, 3], 2) == [1.5, 2.5]\nassert moving_average([5, 5, 5], 3) == [5.0]",
+  "bug_types": [
+    1
+  ],
+  "bug_type_names": [
+    "off_by_one"
+  ],
+  "modified_lines": [
+    3
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

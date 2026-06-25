@@ -1,0 +1,23 @@
+{
+  "id": "is_negative_bugs4_141",
+  "function_name": "is_negative",
+  "bug_count": 1,
+  "correct_code": "def is_negative(n):\n    if n < 0:\n        return True\n    return False",
+  "buggy_code": "def is_negative(n):\n    if not n < 0:\n        return True\n    return False",
+  "test_code": "assert is_negative(-3) == True\nassert is_negative(0) == False\nassert is_negative(7) == False",
+  "bug_types": [
+    4
+  ],
+  "bug_type_names": [
+    "invert_conditional"
+  ],
+  "modified_lines": [
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

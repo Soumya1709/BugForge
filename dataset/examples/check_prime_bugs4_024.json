@@ -1,0 +1,23 @@
+{
+  "id": "check_prime_bugs4_024",
+  "function_name": "check_prime",
+  "bug_count": 1,
+  "correct_code": "def check_prime(num):\n    if num < 2:\n        return False\n    for d in range(2, num):\n        if num % d == 0:\n            return False\n    return True",
+  "buggy_code": "def check_prime(num):\n    if not num < 2:\n        return False\n    for d in range(2, num):\n        if num % d == 0:\n            return False\n    return True",
+  "test_code": "assert check_prime(11) == True\nassert check_prime(9) == False\nassert check_prime(2) == True",
+  "bug_types": [
+    4
+  ],
+  "bug_type_names": [
+    "invert_conditional"
+  ],
+  "modified_lines": [
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.3333333333333333,
+    "buggy_tests_failed": 2
+  }
+}

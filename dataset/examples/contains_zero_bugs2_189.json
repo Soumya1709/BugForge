@@ -1,0 +1,23 @@
+{
+  "id": "contains_zero_bugs2_189",
+  "function_name": "contains_zero",
+  "bug_count": 1,
+  "correct_code": "def contains_zero(lst):\n    for num in lst:\n        if num == 0:\n            return True\n    return False",
+  "buggy_code": "def contains_zero(lst):\n    for num in lst:\n        if num == 0:\n            return False\n    return False",
+  "test_code": "assert contains_zero([1, 0, 3]) == True\nassert contains_zero([1, 2, 3]) == False\nassert contains_zero([0]) == True",
+  "bug_types": [
+    2
+  ],
+  "bug_type_names": [
+    "flip_boolean_return"
+  ],
+  "modified_lines": [
+    4
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.3333333333333333,
+    "buggy_tests_failed": 2
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "flatten_list_bugs7_010",
+  "function_name": "flatten_list",
+  "bug_count": 1,
+  "correct_code": "def flatten_list(nested):\n    result = []\n    for sublist in nested:\n        for item in sublist:\n            result.append(item)\n    return result",
+  "buggy_code": "def flatten_list(nested):\n    result = []\n    for sublist in nested:\n        for item in sublist:\n            result.append(item)\n    return None",
+  "test_code": "assert flatten_list([[1, 2], [3, 4], [5]]) == [1, 2, 3, 4, 5]\nassert flatten_list([[1]]) == [1]\nassert flatten_list([[], [1, 2]]) == [1, 2]",
+  "bug_types": [
+    7
+  ],
+  "bug_type_names": [
+    "wrong_return_value"
+  ],
+  "modified_lines": [
+    6
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

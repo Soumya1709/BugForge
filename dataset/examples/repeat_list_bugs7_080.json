@@ -1,0 +1,23 @@
+{
+  "id": "repeat_list_bugs7_080",
+  "function_name": "repeat_list",
+  "bug_count": 1,
+  "correct_code": "def repeat_list(lst, n):\n    result = []\n    for i in range(n):\n        for item in lst:\n            result.append(item)\n    return result",
+  "buggy_code": "def repeat_list(lst, n):\n    result = []\n    for i in range(n):\n        for item in lst:\n            result.append(item)\n    return None",
+  "test_code": "assert repeat_list([1, 2], 3) == [1, 2, 1, 2, 1, 2]\nassert repeat_list([5], 2) == [5, 5]\nassert repeat_list([1, 2, 3], 1) == [1, 2, 3]",
+  "bug_types": [
+    7
+  ],
+  "bug_type_names": [
+    "wrong_return_value"
+  ],
+  "modified_lines": [
+    6
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

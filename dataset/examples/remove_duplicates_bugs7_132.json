@@ -1,0 +1,23 @@
+{
+  "id": "remove_duplicates_bugs7_132",
+  "function_name": "remove_duplicates",
+  "bug_count": 1,
+  "correct_code": "def remove_duplicates(lst):\n    seen = []\n    for item in lst:\n        if item not in seen:\n            seen.append(item)\n    return seen",
+  "buggy_code": "def remove_duplicates(lst):\n    seen = []\n    for item in lst:\n        if item not in seen:\n            seen.append(item)\n    return None",
+  "test_code": "assert remove_duplicates([1, 2, 2, 3, 3]) == [1, 2, 3]\nassert remove_duplicates([1]) == [1]\nassert remove_duplicates([1, 1, 1]) == [1]",
+  "bug_types": [
+    7
+  ],
+  "bug_type_names": [
+    "wrong_return_value"
+  ],
+  "modified_lines": [
+    6
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

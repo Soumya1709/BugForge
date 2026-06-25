@@ -1,0 +1,23 @@
+{
+  "id": "binary_to_decimal_bugs0_218",
+  "function_name": "binary_to_decimal",
+  "bug_count": 1,
+  "correct_code": "def binary_to_decimal(binary_str):\n    result = 0\n    power = 0\n    for bit in reversed(binary_str):\n        if bit == '1':\n            result += 2 ** power\n        power += 1\n    return result",
+  "buggy_code": "def binary_to_decimal(binary_str):\n    result = 0\n    power = 0\n    for bit in reversed(binary_str):\n        if bit != '1':\n            result += 2 ** power\n        power += 1\n    return result",
+  "test_code": "assert binary_to_decimal('1010') == 10\nassert binary_to_decimal('1111') == 15\nassert binary_to_decimal('0') == 0",
+  "bug_types": [
+    0
+  ],
+  "bug_type_names": [
+    "swap_comparison_operator"
+  ],
+  "modified_lines": [
+    5
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

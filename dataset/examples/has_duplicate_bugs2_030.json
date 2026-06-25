@@ -1,0 +1,23 @@
+{
+  "id": "has_duplicate_bugs2_030",
+  "function_name": "has_duplicate",
+  "bug_count": 1,
+  "correct_code": "def has_duplicate(lst):\n    seen = []\n    for item in lst:\n        if item in seen:\n            return True\n        seen.append(item)\n    return False",
+  "buggy_code": "def has_duplicate(lst):\n    seen = []\n    for item in lst:\n        if item in seen:\n            return False\n        seen.append(item)\n    return False",
+  "test_code": "assert has_duplicate([1, 2, 3, 2]) == True\nassert has_duplicate([1, 2, 3]) == False\nassert has_duplicate([1, 1]) == True",
+  "bug_types": [
+    2
+  ],
+  "bug_type_names": [
+    "flip_boolean_return"
+  ],
+  "modified_lines": [
+    5
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.3333333333333333,
+    "buggy_tests_failed": 2
+  }
+}

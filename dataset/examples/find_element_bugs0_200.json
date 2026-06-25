@@ -1,0 +1,23 @@
+{
+  "id": "find_element_bugs0_200",
+  "function_name": "find_element",
+  "bug_count": 1,
+  "correct_code": "def find_element(lst, val):\n    for idx in range(len(lst)):\n        if lst[idx] == val:\n            return idx\n    return -1",
+  "buggy_code": "def find_element(lst, val):\n    for idx in range(len(lst)):\n        if lst[idx] != val:\n            return idx\n    return -1",
+  "test_code": "assert find_element([10, 20, 30, 40], 30) == 2\nassert find_element([1, 2, 3], 5) == -1\nassert find_element([99], 99) == 0",
+  "bug_types": [
+    0
+  ],
+  "bug_type_names": [
+    "swap_comparison_operator"
+  ],
+  "modified_lines": [
+    3
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

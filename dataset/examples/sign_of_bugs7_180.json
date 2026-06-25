@@ -1,0 +1,23 @@
+{
+  "id": "sign_of_bugs7_180",
+  "function_name": "sign_of",
+  "bug_count": 1,
+  "correct_code": "def sign_of(n):\n    if n > 0:\n        return 1\n    if n < 0:\n        return -1\n    return 0",
+  "buggy_code": "def sign_of(n):\n    if n > 0:\n        return None\n    if n < 0:\n        return -1\n    return 0",
+  "test_code": "assert sign_of(5) == 1\nassert sign_of(-3) == -1\nassert sign_of(0) == 0",
+  "bug_types": [
+    7
+  ],
+  "bug_type_names": [
+    "wrong_return_value"
+  ],
+  "modified_lines": [
+    3
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.6666666666666666,
+    "buggy_tests_failed": 1
+  }
+}

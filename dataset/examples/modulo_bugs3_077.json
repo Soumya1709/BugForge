@@ -1,0 +1,23 @@
+{
+  "id": "modulo_bugs3_077",
+  "function_name": "modulo",
+  "bug_count": 1,
+  "correct_code": "def modulo(a, b):\n    return a % b",
+  "buggy_code": "def modulo(a, b):\n    return b % a",
+  "test_code": "assert modulo(10, 3) == 1\nassert modulo(15, 5) == 0\nassert modulo(7, 4) == 3",
+  "bug_types": [
+    3
+  ],
+  "bug_type_names": [
+    "swap_variable_reference"
+  ],
+  "modified_lines": [
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

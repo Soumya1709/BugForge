@@ -1,0 +1,26 @@
+{
+  "id": "range_of_list_bugs34_263",
+  "function_name": "range_of_list",
+  "bug_count": 2,
+  "correct_code": "def range_of_list(lst):\n    max_val = lst[0]\n    min_val = lst[0]\n    for num in lst:\n        if num > max_val:\n            max_val = num\n        if num < min_val:\n            min_val = num\n    return max_val - min_val",
+  "buggy_code": "def range_of_list(lst):\n    max_val = lst[0]\n    min_val = lst[0]\n    for num in lst:\n        if not num > max_val:\n            max_val = num\n        if num < min_val:\n            min_val = num\n    return min_val - max_val",
+  "test_code": "assert range_of_list([1, 5, 3, 9, 2]) == 8\nassert range_of_list([4, 4, 4]) == 0\nassert range_of_list([10, 1]) == 9",
+  "bug_types": [
+    3,
+    4
+  ],
+  "bug_type_names": [
+    "swap_variable_reference",
+    "invert_conditional"
+  ],
+  "modified_lines": [
+    9,
+    5
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.3333333333333333,
+    "buggy_tests_failed": 2
+  }
+}

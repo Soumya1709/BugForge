@@ -1,0 +1,23 @@
+{
+  "id": "max_of_three_bugs4_184",
+  "function_name": "max_of_three",
+  "bug_count": 1,
+  "correct_code": "def max_of_three(a, b, c):\n    if a >= b and a >= c:\n        return a\n    if b >= c:\n        return b\n    return c",
+  "buggy_code": "def max_of_three(a, b, c):\n    if not (a >= b and a >= c):\n        return a\n    if b >= c:\n        return b\n    return c",
+  "test_code": "assert max_of_three(3, 1, 2) == 3\nassert max_of_three(1, 5, 3) == 5\nassert max_of_three(2, 4, 4) == 4",
+  "bug_types": [
+    4
+  ],
+  "bug_type_names": [
+    "invert_conditional"
+  ],
+  "modified_lines": [
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

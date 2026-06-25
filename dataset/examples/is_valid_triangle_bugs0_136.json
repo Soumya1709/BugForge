@@ -1,0 +1,23 @@
+{
+  "id": "is_valid_triangle_bugs0_136",
+  "function_name": "is_valid_triangle",
+  "bug_count": 1,
+  "correct_code": "def is_valid_triangle(a, b, c):\n    if a + b > c and b + c > a and a + c > b:\n        return True\n    return False",
+  "buggy_code": "def is_valid_triangle(a, b, c):\n    if a + b < c and b + c > a and (a + c > b):\n        return True\n    return False",
+  "test_code": "assert is_valid_triangle(3, 4, 5) == True\nassert is_valid_triangle(1, 2, 10) == False\nassert is_valid_triangle(5, 5, 5) == True",
+  "bug_types": [
+    0
+  ],
+  "bug_type_names": [
+    "swap_comparison_operator"
+  ],
+  "modified_lines": [
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

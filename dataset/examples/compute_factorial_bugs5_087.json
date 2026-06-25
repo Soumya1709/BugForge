@@ -1,0 +1,23 @@
+{
+  "id": "compute_factorial_bugs5_087",
+  "function_name": "compute_factorial",
+  "bug_count": 1,
+  "correct_code": "def compute_factorial(input_number):\n    accumulator = 1\n    for multiplier in range(1, input_number + 1):\n        accumulator *= multiplier\n    return accumulator",
+  "buggy_code": "def compute_factorial(input_number):\n    accumulator = 0\n    for multiplier in range(1, input_number + 1):\n        accumulator *= multiplier\n    return accumulator",
+  "test_code": "assert compute_factorial(4) == 24\nassert compute_factorial(1) == 1\nassert compute_factorial(6) == 720",
+  "bug_types": [
+    5
+  ],
+  "bug_type_names": [
+    "wrong_initial_value"
+  ],
+  "modified_lines": [
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

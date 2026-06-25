@@ -1,0 +1,23 @@
+{
+  "id": "reverse_string_bugs7_244",
+  "function_name": "reverse_string",
+  "bug_count": 1,
+  "correct_code": "def reverse_string(s):\n    result = ''\n    for i in range(len(s) - 1, -1, -1):\n        result += s[i]\n    return result",
+  "buggy_code": "def reverse_string(s):\n    result = ''\n    for i in range(len(s) - 1, -1, -1):\n        result += s[i]\n    return None",
+  "test_code": "assert reverse_string('hello') == 'olleh'\nassert reverse_string('a') == 'a'\nassert reverse_string('abcd') == 'dcba'",
+  "bug_types": [
+    7
+  ],
+  "bug_type_names": [
+    "wrong_return_value"
+  ],
+  "modified_lines": [
+    5
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

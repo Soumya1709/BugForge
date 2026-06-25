@@ -1,0 +1,26 @@
+{
+  "id": "count_vowels_bugs45_191",
+  "function_name": "count_vowels",
+  "bug_count": 2,
+  "correct_code": "def count_vowels(s):\n    count = 0\n    for ch in s:\n        if ch in 'aeiouAEIOU':\n            count += 1\n    return count",
+  "buggy_code": "def count_vowels(s):\n    count = 1\n    for ch in s:\n        if not ch in 'aeiouAEIOU':\n            count += 1\n    return count",
+  "test_code": "assert count_vowels('hello world') == 3\nassert count_vowels('rhythm') == 0\nassert count_vowels('aeiou') == 5",
+  "bug_types": [
+    4,
+    5
+  ],
+  "bug_type_names": [
+    "invert_conditional",
+    "wrong_initial_value"
+  ],
+  "modified_lines": [
+    4,
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

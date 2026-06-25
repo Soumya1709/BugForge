@@ -1,0 +1,26 @@
+{
+  "id": "count_in_range_bugs47_267",
+  "function_name": "count_in_range",
+  "bug_count": 2,
+  "correct_code": "def count_in_range(lst, low, high):\n    count = 0\n    for num in lst:\n        if low <= num <= high:\n            count += 1\n    return count",
+  "buggy_code": "def count_in_range(lst, low, high):\n    count = 0\n    for num in lst:\n        if not low <= num <= high:\n            count += 1\n    return None",
+  "test_code": "assert count_in_range([1, 5, 3, 8, 2], 2, 5) == 3\nassert count_in_range([1, 2, 3], 5, 10) == 0\nassert count_in_range([5, 10, 15], 5, 10) == 2",
+  "bug_types": [
+    4,
+    7
+  ],
+  "bug_type_names": [
+    "invert_conditional",
+    "wrong_return_value"
+  ],
+  "modified_lines": [
+    4,
+    6
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

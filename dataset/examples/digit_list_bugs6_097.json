@@ -1,0 +1,23 @@
+{
+  "id": "digit_list_bugs6_097",
+  "function_name": "digit_list",
+  "bug_count": 1,
+  "correct_code": "def digit_list(n):\n    digits = []\n    n = abs(n)\n    while n > 0:\n        digits.append(n % 10)\n        n //= 10\n    digits.reverse()\n    return digits",
+  "buggy_code": "def digit_list(n):\n    digits = []\n    n = abs(n)\n    while n > 0:\n        digits.append(n % 10)\n        n *= 10\n    digits.reverse()\n    return digits",
+  "test_code": "assert digit_list(123) == [1, 2, 3]\nassert digit_list(9) == [9]\nassert digit_list(100) == [1, 0, 0]",
+  "bug_types": [
+    6
+  ],
+  "bug_type_names": [
+    "wrong_arithmetic_operator"
+  ],
+  "modified_lines": [
+    6
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 0
+  }
+}

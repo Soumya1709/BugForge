@@ -1,0 +1,23 @@
+{
+  "id": "ends_with_bugs0_145",
+  "function_name": "ends_with",
+  "bug_count": 1,
+  "correct_code": "def ends_with(s, suffix):\n    if len(suffix) > len(s):\n        return False\n    if suffix == '':\n        return True\n    return s[-len(suffix):] == suffix",
+  "buggy_code": "def ends_with(s, suffix):\n    if len(suffix) < len(s):\n        return False\n    if suffix == '':\n        return True\n    return s[-len(suffix):] == suffix",
+  "test_code": "assert ends_with('hello', 'lo') == True\nassert ends_with('world', 'xyz') == False\nassert ends_with('abc', 'abc') == True",
+  "bug_types": [
+    0
+  ],
+  "bug_type_names": [
+    "swap_comparison_operator"
+  ],
+  "modified_lines": [
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.6666666666666666,
+    "buggy_tests_failed": 1
+  }
+}

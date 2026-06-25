@@ -1,0 +1,26 @@
+{
+  "id": "list_equals_bugs24_205",
+  "function_name": "list_equals",
+  "bug_count": 2,
+  "correct_code": "def list_equals(a, b):\n    if len(a) != len(b):\n        return False\n    for i in range(len(a)):\n        if a[i] != b[i]:\n            return False\n    return True",
+  "buggy_code": "def list_equals(a, b):\n    if not len(a) != len(b):\n        return True\n    for i in range(len(a)):\n        if a[i] != b[i]:\n            return False\n    return True",
+  "test_code": "assert list_equals([1, 2, 3], [1, 2, 3]) == True\nassert list_equals([1, 2], [1, 3]) == False\nassert list_equals([1], [1, 2]) == False",
+  "bug_types": [
+    2,
+    4
+  ],
+  "bug_type_names": [
+    "flip_boolean_return",
+    "invert_conditional"
+  ],
+  "modified_lines": [
+    3,
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.3333333333333333,
+    "buggy_tests_failed": 2
+  }
+}

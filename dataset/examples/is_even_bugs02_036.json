@@ -1,0 +1,26 @@
+{
+  "id": "is_even_bugs02_036",
+  "function_name": "is_even",
+  "bug_count": 2,
+  "correct_code": "def is_even(n):\n    if n % 2 == 0:\n        return True\n    return False",
+  "buggy_code": "def is_even(n):\n    if n % 2 != 0:\n        return False\n    return False",
+  "test_code": "assert is_even(4) == True\nassert is_even(7) == False\nassert is_even(0) == True",
+  "bug_types": [
+    0,
+    2
+  ],
+  "bug_type_names": [
+    "swap_comparison_operator",
+    "flip_boolean_return"
+  ],
+  "modified_lines": [
+    2,
+    3
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.3333333333333333,
+    "buggy_tests_failed": 2
+  }
+}

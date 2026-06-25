@@ -1,0 +1,23 @@
+{
+  "id": "hypotenuse_bugs6_250",
+  "function_name": "hypotenuse",
+  "bug_count": 1,
+  "correct_code": "def hypotenuse(a, b):\n    return (a * a + b * b) ** 0.5",
+  "buggy_code": "def hypotenuse(a, b):\n    return (a * a - b * b) ** 0.5",
+  "test_code": "assert hypotenuse(3, 4) == 5.0\nassert hypotenuse(5, 12) == 13.0\nassert hypotenuse(8, 6) == 10.0",
+  "bug_types": [
+    6
+  ],
+  "bug_type_names": [
+    "wrong_arithmetic_operator"
+  ],
+  "modified_lines": [
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

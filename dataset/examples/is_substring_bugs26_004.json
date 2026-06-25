@@ -1,0 +1,26 @@
+{
+  "id": "is_substring_bugs26_004",
+  "function_name": "is_substring",
+  "bug_count": 2,
+  "correct_code": "def is_substring(s, sub):\n    if len(sub) > len(s):\n        return False\n    for i in range(len(s) - len(sub) + 1):\n        if s[i:i + len(sub)] == sub:\n            return True\n    return False",
+  "buggy_code": "def is_substring(s, sub):\n    if len(sub) > len(s):\n        return True\n    for i in range(len(s) - len(sub) - 1):\n        if s[i:i + len(sub)] == sub:\n            return True\n    return False",
+  "test_code": "assert is_substring('hello world', 'world') == True\nassert is_substring('hello', 'xyz') == False\nassert is_substring('abc', 'abc') == True",
+  "bug_types": [
+    2,
+    6
+  ],
+  "bug_type_names": [
+    "flip_boolean_return",
+    "wrong_arithmetic_operator"
+  ],
+  "modified_lines": [
+    3,
+    4
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.3333333333333333,
+    "buggy_tests_failed": 2
+  }
+}

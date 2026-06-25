@@ -1,0 +1,26 @@
+{
+  "id": "rotate_list_bugs36_057",
+  "function_name": "rotate_list",
+  "bug_count": 2,
+  "correct_code": "def rotate_list(lst, k):\n    n = len(lst)\n    k = k % n\n    return lst[k:] + lst[:k]",
+  "buggy_code": "def rotate_list(lst, k):\n    n = len(lst)\n    k = n % k\n    return lst[k:] - lst[:k]",
+  "test_code": "assert rotate_list([1, 2, 3, 4, 5], 2) == [3, 4, 5, 1, 2]\nassert rotate_list([1, 2, 3], 0) == [1, 2, 3]\nassert rotate_list([1, 2, 3], 3) == [1, 2, 3]",
+  "bug_types": [
+    3,
+    6
+  ],
+  "bug_type_names": [
+    "swap_variable_reference",
+    "wrong_arithmetic_operator"
+  ],
+  "modified_lines": [
+    3,
+    4
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

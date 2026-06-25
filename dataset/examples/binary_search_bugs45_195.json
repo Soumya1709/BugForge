@@ -1,0 +1,26 @@
+{
+  "id": "binary_search_bugs45_195",
+  "function_name": "binary_search",
+  "bug_count": 2,
+  "correct_code": "def binary_search(arr, target):\n    left = 0\n    right = len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1",
+  "buggy_code": "def binary_search(arr, target):\n    left = 1\n    right = len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if not arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1",
+  "test_code": "assert binary_search([1, 3, 5, 7, 9], 5) == 2\nassert binary_search([1, 3, 5, 7, 9], 1) == 0\nassert binary_search([1, 3, 5, 7, 9], 10) == -1",
+  "bug_types": [
+    4,
+    5
+  ],
+  "bug_type_names": [
+    "invert_conditional",
+    "wrong_initial_value"
+  ],
+  "modified_lines": [
+    6,
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

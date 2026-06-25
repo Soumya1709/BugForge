@@ -1,0 +1,23 @@
+{
+  "id": "count_occurrences_bugs4_259",
+  "function_name": "count_occurrences",
+  "bug_count": 1,
+  "correct_code": "def count_occurrences(s, char):\n    count = 0\n    for ch in s:\n        if ch == char:\n            count += 1\n    return count",
+  "buggy_code": "def count_occurrences(s, char):\n    count = 0\n    for ch in s:\n        if not ch == char:\n            count += 1\n    return count",
+  "test_code": "assert count_occurrences('hello', 'l') == 2\nassert count_occurrences('banana', 'a') == 3\nassert count_occurrences('xyz', 'a') == 0",
+  "bug_types": [
+    4
+  ],
+  "bug_type_names": [
+    "invert_conditional"
+  ],
+  "modified_lines": [
+    4
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.3333333333333333,
+    "buggy_tests_failed": 2
+  }
+}

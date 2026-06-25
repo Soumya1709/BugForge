@@ -1,0 +1,23 @@
+{
+  "id": "celsius_to_fahrenheit_bugs6_133",
+  "function_name": "celsius_to_fahrenheit",
+  "bug_count": 1,
+  "correct_code": "def celsius_to_fahrenheit(c):\n    return c * 9 / 5 + 32",
+  "buggy_code": "def celsius_to_fahrenheit(c):\n    return c * 9 / 5 - 32",
+  "test_code": "assert celsius_to_fahrenheit(0) == 32.0\nassert celsius_to_fahrenheit(100) == 212.0\nassert celsius_to_fahrenheit(-40) == -40.0",
+  "bug_types": [
+    6
+  ],
+  "bug_type_names": [
+    "wrong_arithmetic_operator"
+  ],
+  "modified_lines": [
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

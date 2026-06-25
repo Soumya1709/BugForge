@@ -1,0 +1,26 @@
+{
+  "id": "factorial_bugs57_152",
+  "function_name": "factorial",
+  "bug_count": 2,
+  "correct_code": "def factorial(n):\n    result = 1\n    for i in range(1, n + 1):\n        result *= i\n    return result",
+  "buggy_code": "def factorial(n):\n    result = 0\n    for i in range(1, n + 1):\n        result *= i\n    return None",
+  "test_code": "assert factorial(5) == 120\nassert factorial(0) == 1\nassert factorial(3) == 6",
+  "bug_types": [
+    5,
+    7
+  ],
+  "bug_type_names": [
+    "wrong_initial_value",
+    "wrong_return_value"
+  ],
+  "modified_lines": [
+    2,
+    5
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

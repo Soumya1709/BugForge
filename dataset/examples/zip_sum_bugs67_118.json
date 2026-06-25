@@ -1,0 +1,26 @@
+{
+  "id": "zip_sum_bugs67_118",
+  "function_name": "zip_sum",
+  "bug_count": 2,
+  "correct_code": "def zip_sum(a, b):\n    result = []\n    for i in range(len(a)):\n        result.append(a[i] + b[i])\n    return result",
+  "buggy_code": "def zip_sum(a, b):\n    result = []\n    for i in range(len(a)):\n        result.append(a[i] - b[i])\n    return None",
+  "test_code": "assert zip_sum([1, 2, 3], [4, 5, 6]) == [5, 7, 9]\nassert zip_sum([0, 0], [1, 1]) == [1, 1]\nassert zip_sum([10], [5]) == [15]",
+  "bug_types": [
+    6,
+    7
+  ],
+  "bug_type_names": [
+    "wrong_arithmetic_operator",
+    "wrong_return_value"
+  ],
+  "modified_lines": [
+    4,
+    5
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

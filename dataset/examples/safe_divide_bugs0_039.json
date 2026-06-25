@@ -1,0 +1,23 @@
+{
+  "id": "safe_divide_bugs0_039",
+  "function_name": "safe_divide",
+  "bug_count": 1,
+  "correct_code": "def safe_divide(a, b):\n    if b == 0:\n        return None\n    return a / b",
+  "buggy_code": "def safe_divide(a, b):\n    if b != 0:\n        return None\n    return a / b",
+  "test_code": "assert safe_divide(10, 2) == 5.0\nassert safe_divide(7, 0) is None\nassert safe_divide(9, 3) == 3.0",
+  "bug_types": [
+    0
+  ],
+  "bug_type_names": [
+    "swap_comparison_operator"
+  ],
+  "modified_lines": [
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

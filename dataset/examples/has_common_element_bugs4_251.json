@@ -1,0 +1,23 @@
+{
+  "id": "has_common_element_bugs4_251",
+  "function_name": "has_common_element",
+  "bug_count": 1,
+  "correct_code": "def has_common_element(a, b):\n    for item in a:\n        if item in b:\n            return True\n    return False",
+  "buggy_code": "def has_common_element(a, b):\n    for item in a:\n        if not item in b:\n            return True\n    return False",
+  "test_code": "assert has_common_element([1, 2, 3], [3, 4, 5]) == True\nassert has_common_element([1, 2], [3, 4]) == False\nassert has_common_element([7], [7]) == True",
+  "bug_types": [
+    4
+  ],
+  "bug_type_names": [
+    "invert_conditional"
+  ],
+  "modified_lines": [
+    3
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.3333333333333333,
+    "buggy_tests_failed": 2
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "average_of_two_bugs6_074",
+  "function_name": "average_of_two",
+  "bug_count": 1,
+  "correct_code": "def average_of_two(a, b):\n    return (a + b) / 2",
+  "buggy_code": "def average_of_two(a, b):\n    return (a - b) / 2",
+  "test_code": "assert average_of_two(4, 6) == 5.0\nassert average_of_two(0, 10) == 5.0\nassert average_of_two(3, 3) == 3.0",
+  "bug_types": [
+    6
+  ],
+  "bug_type_names": [
+    "wrong_arithmetic_operator"
+  ],
+  "modified_lines": [
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

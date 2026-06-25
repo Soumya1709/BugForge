@@ -1,0 +1,23 @@
+{
+  "id": "lcm_bugs7_285",
+  "function_name": "lcm",
+  "bug_count": 1,
+  "correct_code": "def lcm(a, b):\n    g = a\n    temp = b\n    while temp != 0:\n        g, temp = temp, g % temp\n    return (a * b) // g",
+  "buggy_code": "def lcm(a, b):\n    g = a\n    temp = b\n    while temp != 0:\n        g, temp = (temp, g % temp)\n    return None",
+  "test_code": "assert lcm(4, 6) == 12\nassert lcm(3, 5) == 15\nassert lcm(7, 7) == 7",
+  "bug_types": [
+    7
+  ],
+  "bug_type_names": [
+    "wrong_return_value"
+  ],
+  "modified_lines": [
+    6
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

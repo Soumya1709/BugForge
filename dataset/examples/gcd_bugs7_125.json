@@ -1,0 +1,23 @@
+{
+  "id": "gcd_bugs7_125",
+  "function_name": "gcd",
+  "bug_count": 1,
+  "correct_code": "def gcd(a, b):\n    while b != 0:\n        a, b = b, a % b\n    return a",
+  "buggy_code": "def gcd(a, b):\n    while b != 0:\n        a, b = (b, a % b)\n    return None",
+  "test_code": "assert gcd(48, 18) == 6\nassert gcd(100, 75) == 25\nassert gcd(7, 5) == 1",
+  "bug_types": [
+    7
+  ],
+  "bug_type_names": [
+    "wrong_return_value"
+  ],
+  "modified_lines": [
+    4
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

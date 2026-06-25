@@ -1,0 +1,26 @@
+{
+  "id": "fibonacci_bugs46_215",
+  "function_name": "fibonacci",
+  "bug_count": 2,
+  "correct_code": "def fibonacci(n):\n    if n <= 0:\n        return 0\n    if n == 1:\n        return 1\n    a = 0\n    b = 1\n    for i in range(2, n + 1):\n        a, b = b, a + b\n    return b",
+  "buggy_code": "def fibonacci(n):\n    if not n <= 0:\n        return 0\n    if n == 1:\n        return 1\n    a = 0\n    b = 1\n    for i in range(2, n - 1):\n        a, b = (b, a + b)\n    return b",
+  "test_code": "assert fibonacci(0) == 0\nassert fibonacci(1) == 1\nassert fibonacci(7) == 13",
+  "bug_types": [
+    4,
+    6
+  ],
+  "bug_type_names": [
+    "invert_conditional",
+    "wrong_arithmetic_operator"
+  ],
+  "modified_lines": [
+    2,
+    8
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

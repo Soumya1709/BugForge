@@ -1,0 +1,26 @@
+{
+  "id": "product_list_bugs67_127",
+  "function_name": "product_list",
+  "bug_count": 2,
+  "correct_code": "def product_list(lst):\n    result = 1\n    for num in lst:\n        result *= num\n    return result",
+  "buggy_code": "def product_list(lst):\n    result = 1\n    for num in lst:\n        result //= num\n    return None",
+  "test_code": "assert product_list([1, 2, 3, 4]) == 24\nassert product_list([5]) == 5\nassert product_list([2, 3, 4]) == 24",
+  "bug_types": [
+    6,
+    7
+  ],
+  "bug_type_names": [
+    "wrong_arithmetic_operator",
+    "wrong_return_value"
+  ],
+  "modified_lines": [
+    4,
+    5
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

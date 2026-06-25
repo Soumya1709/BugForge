@@ -1,0 +1,23 @@
+{
+  "id": "celsius_to_kelvin_bugs6_241",
+  "function_name": "celsius_to_kelvin",
+  "bug_count": 1,
+  "correct_code": "def celsius_to_kelvin(c):\n    return c + 273.15",
+  "buggy_code": "def celsius_to_kelvin(c):\n    return c - 273.15",
+  "test_code": "assert celsius_to_kelvin(0) == 273.15\nassert celsius_to_kelvin(100) == 373.15\nassert celsius_to_kelvin(-273.15) == 0.0",
+  "bug_types": [
+    6
+  ],
+  "bug_type_names": [
+    "wrong_arithmetic_operator"
+  ],
+  "modified_lines": [
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

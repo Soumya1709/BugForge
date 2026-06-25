@@ -1,0 +1,23 @@
+{
+  "id": "flip_string_bugs7_025",
+  "function_name": "flip_string",
+  "bug_count": 1,
+  "correct_code": "def flip_string(text):\n    out = ''\n    idx = len(text) - 1\n    while idx >= 0:\n        out += text[idx]\n        idx -= 1\n    return out",
+  "buggy_code": "def flip_string(text):\n    out = ''\n    idx = len(text) - 1\n    while idx >= 0:\n        out += text[idx]\n        idx -= 1\n    return None",
+  "test_code": "assert flip_string('world') == 'dlrow'\nassert flip_string('x') == 'x'\nassert flip_string('ab') == 'ba'",
+  "bug_types": [
+    7
+  ],
+  "bug_type_names": [
+    "wrong_return_value"
+  ],
+  "modified_lines": [
+    7
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

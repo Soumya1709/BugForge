@@ -1,0 +1,23 @@
+{
+  "id": "grade_letter_bugs4_067",
+  "function_name": "grade_letter",
+  "bug_count": 1,
+  "correct_code": "def grade_letter(score):\n    if score >= 90:\n        return 'A'\n    if score >= 80:\n        return 'B'\n    if score >= 70:\n        return 'C'\n    return 'F'",
+  "buggy_code": "def grade_letter(score):\n    if not score >= 90:\n        return 'A'\n    if score >= 80:\n        return 'B'\n    if score >= 70:\n        return 'C'\n    return 'F'",
+  "test_code": "assert grade_letter(95) == 'A'\nassert grade_letter(85) == 'B'\nassert grade_letter(60) == 'F'",
+  "bug_types": [
+    4
+  ],
+  "bug_type_names": [
+    "invert_conditional"
+  ],
+  "modified_lines": [
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

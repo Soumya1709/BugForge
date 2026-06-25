@@ -1,0 +1,23 @@
+{
+  "id": "divide_bugs3_107",
+  "function_name": "divide",
+  "bug_count": 1,
+  "correct_code": "def divide(a, b):\n    return a / b",
+  "buggy_code": "def divide(a, b):\n    return b / a",
+  "test_code": "assert divide(10, 2) == 5.0\nassert divide(9, 3) == 3.0\nassert divide(1, 4) == 0.25",
+  "bug_types": [
+    3
+  ],
+  "bug_type_names": [
+    "swap_variable_reference"
+  ],
+  "modified_lines": [
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

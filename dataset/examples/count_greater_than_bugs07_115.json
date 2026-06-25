@@ -1,0 +1,26 @@
+{
+  "id": "count_greater_than_bugs07_115",
+  "function_name": "count_greater_than",
+  "bug_count": 2,
+  "correct_code": "def count_greater_than(lst, threshold):\n    count = 0\n    for num in lst:\n        if num > threshold:\n            count += 1\n    return count",
+  "buggy_code": "def count_greater_than(lst, threshold):\n    count = 0\n    for num in lst:\n        if num < threshold:\n            count += 1\n    return None",
+  "test_code": "assert count_greater_than([1, 5, 3, 8, 2], 4) == 2\nassert count_greater_than([1, 2, 3], 5) == 0\nassert count_greater_than([10, 20, 30], 0) == 3",
+  "bug_types": [
+    0,
+    7
+  ],
+  "bug_type_names": [
+    "swap_comparison_operator",
+    "wrong_return_value"
+  ],
+  "modified_lines": [
+    4,
+    6
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

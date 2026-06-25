@@ -1,0 +1,23 @@
+{
+  "id": "power_bugs5_280",
+  "function_name": "power",
+  "bug_count": 1,
+  "correct_code": "def power(base, exp):\n    result = 1\n    for i in range(exp):\n        result *= base\n    return result",
+  "buggy_code": "def power(base, exp):\n    result = 0\n    for i in range(exp):\n        result *= base\n    return result",
+  "test_code": "assert power(2, 10) == 1024\nassert power(3, 3) == 27\nassert power(5, 0) == 1",
+  "bug_types": [
+    5
+  ],
+  "bug_type_names": [
+    "wrong_initial_value"
+  ],
+  "modified_lines": [
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.0,
+    "buggy_tests_failed": 3
+  }
+}

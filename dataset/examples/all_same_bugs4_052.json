@@ -1,0 +1,23 @@
+{
+  "id": "all_same_bugs4_052",
+  "function_name": "all_same",
+  "bug_count": 1,
+  "correct_code": "def all_same(lst):\n    if len(lst) == 0:\n        return True\n    first = lst[0]\n    for item in lst:\n        if item != first:\n            return False\n    return True",
+  "buggy_code": "def all_same(lst):\n    if not len(lst) == 0:\n        return True\n    first = lst[0]\n    for item in lst:\n        if item != first:\n            return False\n    return True",
+  "test_code": "assert all_same([1, 1, 1]) == True\nassert all_same([1, 2, 1]) == False\nassert all_same([]) == True",
+  "bug_types": [
+    4
+  ],
+  "bug_type_names": [
+    "invert_conditional"
+  ],
+  "modified_lines": [
+    2
+  ],
+  "error_line": null,
+  "verified": {
+    "correct_pass_rate": 1.0,
+    "buggy_pass_rate": 0.3333333333333333,
+    "buggy_tests_failed": 2
+  }
+}
