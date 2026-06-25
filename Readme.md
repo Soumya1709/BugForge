@@ -2,8 +2,8 @@
 
 An RL agent that learns to debug arbitrary Python code using only test pass/fail signals — no correct code, no diffs, no hints.
 
-> **Status:** Active development — Week 1–2 of 4  
-> **Team:** 2 people · [Person A — RL Brain] · [Person B — Environment & Data]
+> **Status:** Active development 
+> **Team:** [Soumya Sinha — RL Brain] · [Tejaswi Raj — Environment & Data]
 
 ---
 
