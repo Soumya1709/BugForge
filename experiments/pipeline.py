@@ -1,23 +1,12 @@
-from preprocessing.normalizer import normalize
-from encoder.codebert_encoder import get_embedding
-from rl.state import StateBuilder
-from rl.error_detector import ErrorDetector
+from rl.state_encoder import StateEncoder
 
-code = """
-def add(a,b):
-    return a+b
-"""
+encoder = StateEncoder()
 
-detector = ErrorDetector()
-syntax_info = detector.detect_syntax_error(code)
-normalized = normalize(code)
-embedding = get_embedding(normalized)
+code = """def add(a,b)
+    return a+b"""
 
-builder = StateBuilder()
-
-state = builder.build_state(
-    embedding=embedding,
-    error_line=syntax_info["error_line"],
+state = encoder.encode_state(
+    code=code,
     pass_rate=0.75,
     attempts_left=0.90
 )
