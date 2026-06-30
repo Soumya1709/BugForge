@@ -2,6 +2,7 @@ import random
 import torch
 import torch.nn as nn
 import torch.optim as optim
+import numpy as np
 
 from models.q_network import QNetwork
 from memory.replay_buffer import ReplayBuffer
@@ -98,6 +99,41 @@ class DQNAgent:
         ).item()
 
         return action
+    
+    def learn(self, batch_size=32, gamma=0.99):
+
+    
+       if len(self.memory) < batch_size:
+         return None
+
+    
+       batch = self.memory.sample(batch_size)
+
+       states, actions, rewards, next_states, dones = zip(*batch)
+
+       states = torch.FloatTensor(np.array(states))
+       actions = torch.LongTensor(actions).unsqueeze(1)
+       rewards = torch.FloatTensor(rewards).unsqueeze(1)
+       next_states = torch.FloatTensor(np.array(next_states))
+       dones = torch.FloatTensor(dones).unsqueeze(1)
+
+    
+       current_q = self.policy_network(states).gather(1, actions)
+
+   
+       with torch.no_grad():
+         max_next_q = self.target_network(next_states).max(1)[0].unsqueeze(1)
+         target_q = rewards + gamma * max_next_q * (1 - dones)
+
+    
+       loss = self.loss_fn(current_q, target_q)
+
+    
+       self.optimizer.zero_grad()
+       loss.backward()
+       self.optimizer.step()
+
+       return loss.item()
 
    
 
