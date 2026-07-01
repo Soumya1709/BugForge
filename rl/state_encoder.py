@@ -17,15 +17,23 @@ class StateEncoder:
     ):
 
         
-        if error_line != -1:
+        if error_line is None:
+            normalized_error_line = -1.0
+        elif error_line == -1:
+            normalized_error_line = -1.0
+        else:
+            normalized_error_line = min(error_line / 100.0, 1.0)
+
+       
+        if normalized_error_line == -1.0:
+            
+            normalized_code = normalize(code)
+            embedding = get_embedding(normalized_code)
+        else:
+            
             embedding = get_embedding(code)
 
-        else:
-            normalized = normalize(code)
-            embedding = get_embedding(normalized)
-            
-        normalized_error_line = error_line / 100.0
-
+        
         state = self.builder.build_state(
             embedding=embedding,
             error_line=normalized_error_line,

@@ -14,14 +14,14 @@ DEFAULT_TIMEOUT = 5
 # ─────────────────────────────────────────────────────────────────────────────
  
 def _get_error_line(source: str) -> Optional[int]:
-    """Return the line number of a SyntaxError in source, or None."""
+    """Return the line number of a SyntaxError in source, or -1."""
     try:
         ast.parse(source)
-        return None
+        return -1
     except SyntaxError as e:
         return e.lineno
     except Exception:
-        return None
+        return -1
  
  
 def _count_asserts(test_code: str) -> int:
@@ -71,6 +71,7 @@ print(f"{{_passed}},{{_failed}}")
 # ─────────────────────────────────────────────────────────────────────────────
  
 def run_tests(
+    
     code: str,
     test_code: str,
     timeout: int = DEFAULT_TIMEOUT,
@@ -90,7 +91,7 @@ def run_tests(
     error_line = _get_error_line(code)
     total = _count_asserts(test_code)
  
-    if error_line is not None:
+    if error_line != -1:
         return {
             "passed": 0,
             "failed": total,
@@ -108,11 +109,13 @@ def run_tests(
             "total": 0,
             "pass_rate": 0.0,
             "timed_out": False,
-            "error_line": None,
+            "error_line": -1,
         }
  
     # ── Build and run the script ──────────────────────────────────────────────
+   
     script = _build_runner_script(code, test_code)
+
     tmp_path = None
  
     try:
@@ -131,19 +134,32 @@ def run_tests(
             text=True,
             timeout=timeout,
         )
- 
-        output = proc.stdout.strip()
-        if "," in output:
-            passed, failed = map(int, output.split(",", 1))
-            passed = max(0, min(passed, total))
-            failed = max(0, min(failed, total))
-            return {
+        
+
+        output_lines = proc.stdout.strip().splitlines()
+        if len(output_lines) == 0:
+          return {
+            "passed": 0,
+            "failed": total,
+            "total": total,
+            "pass_rate": 0.0,
+            "timed_out": False,
+            "error_line": -1,
+        }
+
+        last_line = output_lines[-1]
+
+        passed, failed = map(int, last_line.split(","))
+
+        passed = max(0, min(passed, total))
+        failed = max(0, min(failed, total))
+        return {
                 "passed": passed,
                 "failed": failed,
                 "total": total,
                 "pass_rate": passed / total,
                 "timed_out": False,
-                "error_line": None,
+                "error_line": -1,
             }
  
         # Unexpected output — treat as all failed
@@ -153,7 +169,7 @@ def run_tests(
             "total": total,
             "pass_rate": 0.0,
             "timed_out": False,
-            "error_line": None,
+            "error_line": -1,
         }
  
     except subprocess.TimeoutExpired:
@@ -163,7 +179,7 @@ def run_tests(
             "total": total,
             "pass_rate": 0.0,
             "timed_out": True,
-            "error_line": None,
+            "error_line": -1,
         }
  
     except Exception:
@@ -173,9 +189,9 @@ def run_tests(
             "total": total,
             "pass_rate": 0.0,
             "timed_out": False,
-            "error_line": None,
+            "error_line": -1,
         }
- 
+    
     finally:
         if tmp_path and os.path.exists(tmp_path):
             try:

@@ -208,7 +208,7 @@ class DebuggerEnv:
         return {
             "code":       self._current_code,
             "pass_rate":  test_result["pass_rate"],
-            "error_line": test_result.get("error_line"),
+            "error_line": test_result.get("error_line",-1),
             "attempts":   self._attempts,
             "timed_out":  test_result.get("timed_out", False),
         }
