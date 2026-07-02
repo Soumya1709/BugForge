@@ -15,17 +15,22 @@ from test_harness.harness import run_tests, validate_test_code
 from fix_executor.executor import ACTION_NAMES
 from environment.debugger_env import DebuggerEnv, load_dataset
 
-# ── Agent import (graceful fallback to mock) ──────────────────────────────────
-try:
-    from agent.dqn import DQNAgent
-    _agent_instance = DQNAgent.load(
-        os.path.join(ROOT, "agent", "checkpoints", "latest.pt")
-    )
-    AGENT_LABEL = "🤖 DQN Agent (trained)"
-except Exception:
-    from agent.mock_agent import MockAgent
-    _agent_instance = MockAgent()
-    AGENT_LABEL = "🎲 Mock Agent (DQN not ready yet)"
+# ── Agent load (no fallback — real DQN only) ─────────────────────────────────
+import torch
+from agents.dqn_agent import DQNAgent
+from rl.state_encoder import StateEncoder
+
+_checkpoint_path = os.path.join(ROOT, "bugforge_dqn.pth")
+
+_agent_instance = DQNAgent()
+_agent_instance.policy_network.load_state_dict(
+    torch.load(_checkpoint_path, map_location="cpu")
+)
+_agent_instance.policy_network.eval()
+
+_state_encoder = StateEncoder()
+
+AGENT_LABEL = "🤖 DQN Agent (trained)"
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -189,7 +194,8 @@ def _run_agent(code: str, test_code: str, max_attempts: int = 15):
     Returns (history, final_code, solved).
     """
     agent = _agent_instance
-    agent.reset()
+
+    # DQNAgent has no reset() method — nothing to call here
 
     current_code = code
     history = []
@@ -199,7 +205,7 @@ def _run_agent(code: str, test_code: str, max_attempts: int = 15):
         test_result = run_tests(current_code, test_code, timeout=5)
         pass_rate = test_result["pass_rate"]
 
-        # Build state for agent
+        # Build state dict for display purposes
         state = {
             "code":       current_code,
             "pass_rate":  pass_rate,
@@ -211,8 +217,17 @@ def _run_agent(code: str, test_code: str, max_attempts: int = 15):
         if pass_rate == 1.0:
             break
 
-        # Agent picks action
-        action_id = agent.choose(state)
+        # CHANGE 3 — DQNAgent needs 771-dim numpy array, not a dict.
+        # Use StateEncoder to convert state dict -> vector, then call
+        # choose_action(vector, epsilon=0) instead of choose(dict)
+        attempts_left = 1 - (attempt - 1) / max_attempts
+        state_vector = _state_encoder.encode_state(
+            code=current_code,
+            pass_rate=pass_rate,
+            error_line=test_result.get("error_line"),
+            attempts_left=attempts_left,
+        )
+        action_id = agent.choose_action(state_vector, epsilon=0)
 
         # Apply fix
         from fix_executor.executor import apply_fix
@@ -425,7 +440,7 @@ if run_clicked and code_input.strip() and test_input.strip():
     MAX_ATTEMPTS = 15
     current_code = code_input
     agent = _agent_instance
-    agent.reset()
+    # agent.reset()
     history = []
     final_code = code_input
     solved = False
@@ -442,15 +457,14 @@ if run_clicked and code_input.strip() and test_input.strip():
             final_code = current_code
             break
 
-        state = {
-            "code":       current_code,
-            "pass_rate":  pass_rate,
-            "error_line": test_result.get("error_line"),
-            "attempts":   attempt - 1,
-            "timed_out":  test_result.get("timed_out", False),
-        }
-
-        action_id = agent.choose(state)
+        attempts_left = 1 - (attempt - 1) / MAX_ATTEMPTS
+        state_vector = _state_encoder.encode_state(
+            code=current_code,
+            pass_rate=pass_rate,
+            error_line=test_result.get("error_line"),
+            attempts_left=attempts_left,
+        )
+        action_id = agent.choose_action(state_vector, epsilon=0)
 
         from fix_executor.executor import apply_fix
         fix_result = apply_fix(current_code, action_id)
