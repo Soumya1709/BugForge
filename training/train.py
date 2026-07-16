@@ -12,7 +12,7 @@ from rl.state_encoder import StateEncoder
 
 
 
-NUM_EPISODES = 500          # Change to 500 for actual training
+NUM_EPISODES = 500          
 BATCH_SIZE = 32
 
 TARGET_UPDATE = 10

@@ -148,7 +148,7 @@ def run(req: RunRequest):
     current_code = req.code
     steps = []
     prev_rate = initial["pass_rate"]
-
+    tried_actions = set()
     for attempt in range(1, req.max_attempts + 1):
         test_result = run_tests(current_code, req.test_code, timeout=5)
         pass_rate = test_result["pass_rate"]
@@ -162,7 +162,31 @@ def run(req: RunRequest):
             test_result.get("error_line"),
             attempt, req.max_attempts,
         )
-        action_id = _agent.choose_action(state_vector, epsilon=0)
+        import torch
+
+        state_tensor = torch.FloatTensor(state_vector).unsqueeze(0)
+
+        with torch.no_grad():
+          q_values = _agent.policy_network(state_tensor).squeeze(0)
+
+        sorted_actions = torch.argsort(
+           q_values,
+           descending=True
+        )
+
+        action_id = None
+
+        for action in sorted_actions:
+          candidate = action.item()
+
+          if candidate not in tried_actions:
+            action_id = candidate
+            break
+        
+        if action_id is None:
+          break
+
+        tried_actions.add(action_id)
 
         # Apply fix
         fix_result = apply_fix(current_code, action_id)
@@ -189,8 +213,12 @@ def run(req: RunRequest):
             "timed_out":   new_result.get("timed_out", False),
         })
 
-        if fix_result["applied"] and not new_result.get("timed_out"):
-            current_code = new_code
+        if (
+        fix_result["applied"]
+        and not new_result.get("timed_out")
+       and new_rate >= pass_rate
+       ):
+         current_code = new_code
 
         prev_rate = new_rate
 
