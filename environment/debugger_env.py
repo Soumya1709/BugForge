@@ -11,12 +11,12 @@ from test_harness.harness import run_tests
 # REWARDS
 # ─────────────────────────────────────────────────────────────────────────────
  
-REWARD_SOLVED        =  10.0
-REWARD_PROGRESS      =   2.0
-REWARD_NO_CHANGE     =  -0.2
-REWARD_NOOP          =  -0.5
-REWARD_REGRESSED     =  -1.0
-REWARD_TIMEOUT       =  -2.0
+REWARD_SOLVED        = 20.0
+REWARD_PROGRESS      = 5.0
+REWARD_NO_CHANGE     = -1.0
+REWARD_NOOP          = -2.0
+REWARD_REGRESSED     = -5.0
+REWARD_TIMEOUT       = -10.0
  
  
 # ─────────────────────────────────────────────────────────────────────────────

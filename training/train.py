@@ -12,14 +12,15 @@ from rl.state_encoder import StateEncoder
 
 
 
-NUM_EPISODES = 500          
+NUM_EPISODES = 3000          
 BATCH_SIZE = 32
 
 TARGET_UPDATE = 10
 
 EPSILON = 1.0
 EPSILON_MIN = 0.05
-EPSILON_DECAY = 0.995
+EPSILON_DECAY = 0.998
+LEARNING_RATE = 0.001
 
 
 
@@ -36,6 +37,7 @@ encoder = StateEncoder()
 
 
 solved_count = 0
+best_solved = 0
 
 for episode in range(NUM_EPISODES):
 
@@ -105,6 +107,12 @@ for episode in range(NUM_EPISODES):
 
     if (episode + 1) % TARGET_UPDATE == 0:
         agent.update_target_network()
+        
+    if (episode + 1) % 100 == 0:
+      torch.save(
+        agent.policy_network.state_dict(),
+        f"checkpoints/model_episode_{episode+1}.pth"
+    )
 
     
 
@@ -124,26 +132,40 @@ for episode in range(NUM_EPISODES):
 
     if done and final_pass_rate == 1.0:
         solved_count += 1
+        
+    if solved_count > best_solved:
+      best_solved = solved_count
 
-    print(
-        f"Episode {episode + 1:03d} | "
-        f"Reward: {total_reward:6.2f} | "
-        f"PassRate: {final_pass_rate:.2f} | "
-        f"Loss: {average_loss:.4f} | "
-        f"Epsilon: {EPSILON:.3f} | "
-        f"Done: {done}"
+    torch.save(
+        agent.policy_network.state_dict(),
+        "bugforge_dqn_best.pth"
     )
 
+    print(
+      f"Episode {episode+1:04d} | "
+      f"Reward: {total_reward:6.2f} | "
+      f"PassRate: {final_pass_rate:.2f} | "
+      f"Loss: {average_loss:.4f} | "
+      f"Epsilon: {EPSILON:.3f} | "
+      f"Solved: {solved_count}/{episode+1} | "  
+      f"Done: {done}"
+    )
+    
+    if (episode + 1) % 100 == 0:
+      print("\n" + "=" * 70)
+      print(f"Checkpoint at Episode : {episode + 1}")
+      print(f"Solved Episodes       : {solved_count}")
+      print(f"Solve Rate            : {(solved_count / (episode + 1)) * 100:.2f}%")
+      print(f"Current Epsilon       : {EPSILON:.3f}")
+      print("=" * 70 + "\n")
 
 
 
-torch.save(
-    agent.policy_network.state_dict(),
-    "bugforge_dqn.pth",
-)
+
+
 
 print("\nTraining Finished!")
-print("Model saved as bugforge_dqn.pth")
+print("Best model saved as bugforge_dqn_best.pth")
 
 print("\n========== Training Summary ==========")
 print(f"Total Episodes : {NUM_EPISODES}")
