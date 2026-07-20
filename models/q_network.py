@@ -3,38 +3,42 @@ import torch.nn as nn
 
 
 class QNetwork(nn.Module):
+    """
+    QNetwork v3 — right-sized for BugForge dataset.
 
-    def __init__(self,
-                 state_size=771,
-                 action_size=8):
+    Key insight: deeper != better when training data is small (240 examples).
+    Original 3-layer network was fine in size, the missing pieces were:
+      - Dropout (was overfitting)
+      - LayerNorm on input (CodeBERT embeddings have large variance)
+      - Kaiming init
 
+    Architecture: 771 -> 256 -> 128 -> 8
+    Same depth as original but properly regularized.
+    """
+
+    def __init__(self, state_size=771, action_size=8, dropout=0.3):
         super().__init__()
 
-        self.fc1 = nn.Linear(state_size,256)
+        self.net = nn.Sequential(
+            nn.Linear(state_size, 256),
+            nn.LayerNorm(256),
+            nn.ReLU(),
+            nn.Dropout(dropout),
 
-        self.fc2 = nn.Linear(256,128)
+            nn.Linear(256, 128),
+            nn.ReLU(),
+            nn.Dropout(dropout),
 
-        self.fc3 = nn.Linear(128,action_size)
+            nn.Linear(128, action_size),
+        )
 
-    def forward(self,x):
+        self._init_weights()
 
-        x=self.fc1(x)
+    def _init_weights(self):
+        for m in self.modules():
+            if isinstance(m, nn.Linear):
+                nn.init.kaiming_uniform_(m.weight, nonlinearity='relu')
+                nn.init.constant_(m.bias, 0.0)
 
-        x=torch.relu(x)
-
-        x=self.fc2(x)
-
-        x=torch.relu(x)
-
-        x=self.fc3(x)
-
-        return x
-
-# if __name__=="__main__":
-#     model=QNetwork()
-#     dummy=torch.randn(1,771)
-#     output=model(dummy)
-    
-
-# print(output)
-# print(output.shape)
+    def forward(self, x):
+        return self.net(x)
